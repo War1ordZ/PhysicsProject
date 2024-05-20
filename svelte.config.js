@@ -1,9 +1,11 @@
 /**
  * from https://kit.svelte.dev/docs/adapter-static
  */
-import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-static'
+import preprocess from 'svelte-preprocess'
 
 export default {
+    preprocess: preprocess(),
     kit: {
         adapter: adapter({
             // default options are shown. On some platforms
@@ -15,4 +17,4 @@ export default {
             strict: true
         })
     }
-};
+}
