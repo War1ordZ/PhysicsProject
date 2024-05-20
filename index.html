@@ -5,20 +5,23 @@
 		<link rel="icon" href="./favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
-		<link rel="modulepreload" href="./_app/immutable/entry/start.BfooF0xu.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/entry.B8inUy1F.js">
+		<link href="./_app/immutable/assets/2.rXUnl7Yg.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.DgmYmcb7.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/entry.BBm5LEY3.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.BvLojk_z.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.svV4xegn.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.CDIhRLKe.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/0.DMhiOUxU.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/2.Ddi1SIuM.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.DRg635Kg.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.BknbpnMS.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.CizlH6vw.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/2.Dw9A21CN.js">
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">  <h1 data-svelte-h="svelte-yyjjjs">Welcome to SvelteKit</h1> <p data-svelte-h="svelte-jl9sbz">Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p> 
+		<div style="display: contents">  <main class="svelte-f2vm6j"><h1 data-svelte-h="svelte-1oqynl9">Вычисление напряжённости и потенциала поля</h1> <div class="input-group svelte-f2vm6j"><label for="length" data-svelte-h="svelte-1t4iwr2">Длина нити (L), м:</label> <input id="length" type="number" min="0.1" step="0.1" value="1"></div> <div class="input-group svelte-f2vm6j"><label for="density" data-svelte-h="svelte-ew2m6e">Линейная плотность заряда (λ), Кл/м:</label> <input id="density" type="number" min="0.1" step="0.1" value="1"></div> <div><h2 data-svelte-h="svelte-1mp97xh">Результаты</h2> <p>Напряженность поля (E): 0.00 мкН/Кл</p> <p>Потенциал поля (V): 0.00 мкВ</p></div> <main class="svelte-f2vm6j"><h1 data-svelte-h="svelte-1oqynl9">Вычисление напряжённости и потенциала поля</h1> <div class="input-group svelte-f2vm6j"><label for="length" data-svelte-h="svelte-1t4iwr2">Длина нити (L), м:</label> <input id="length" type="number" min="0.1" step="0.1" value="1"></div> <div class="input-group svelte-f2vm6j"><label for="density" data-svelte-h="svelte-ew2m6e">Линейная плотность заряда (λ), Кл/м:</label> <input id="density" type="number" min="0.1" step="0.1" value="1"></div> <div><h2 data-svelte-h="svelte-1mp97xh">Результаты</h2> <p>Напряженность поля (E): 0 Н/Кл</p> <p>Потенциал поля (V): 0 В</p></div> <div></div> </main> </main> 
 			
 			<script>
 				{
-					__sveltekit_bndl1w = {
+					__sveltekit_1us1krg = {
 						base: new URL(".", location).pathname.slice(0, -1)
 					};
 
@@ -27,8 +30,8 @@
 					const data = [null,null];
 
 					Promise.all([
-						import("./_app/immutable/entry/start.BfooF0xu.js"),
-						import("./_app/immutable/entry/app.svV4xegn.js")
+						import("./_app/immutable/entry/start.DgmYmcb7.js"),
+						import("./_app/immutable/entry/app.DRg635Kg.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 2],
