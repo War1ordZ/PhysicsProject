@@ -1,10 +1,10 @@
 <script lang="ts">
   import Visual from './visual.svelte';
 
-  let L = 1; // длина нити в метрах
+  let l = 1; // длина нити в метрах
   let λ = 1; // линейная плотность заряда в Кл/м
-  let E = 0;
-  let V = 0;
+  // let E = 0;
+  // let V = 0;
 
   function formatValue(value: number, unit: string) {
     if (Math.abs(value) >= 1e9) {
@@ -28,7 +28,7 @@
   <h1>Вычисление напряжённости и потенциала поля</h1>
   <div class="input-group">
     <label for="length">Длина нити (L), м:</label>
-    <input id="length" type="number" bind:value={L} min="0.1" step="0.1" />
+    <input id="length" type="number" bind:value={l} min="0.1" step="0.1" />
   </div>
   <div class="input-group">
     <label for="density">Линейная плотность заряда (λ), Кл/м:</label>
@@ -36,10 +36,10 @@
   </div>
   <div>
     <h2>Результаты</h2>
-    <p>Напряженность поля (E): {formatValue(E, 'Н/Кл')}</p>
-    <p>Потенциал поля (V): {formatValue(V, 'В')}</p>
+    <!-- <p>Напряженность поля (E): {formatValue(E, 'Н/Кл')}</p>
+    <p>Потенциал поля (V): {formatValue(V, 'В')}</p> -->
   </div>
-  <Visual {L} {λ} {E} {V} />
+  <Visual {l} {λ} />
 </main>
 
 <style>
