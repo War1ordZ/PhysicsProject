@@ -2,28 +2,28 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="/PhysicsProject/favicon.png" />
+		<link rel="icon" href="./favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
-		<link href="/PhysicsProject/_app/immutable/assets/2.rXUnl7Yg.css" rel="stylesheet">
-		<link rel="modulepreload" href="/PhysicsProject/_app/immutable/entry/start.DYJXliPh.js">
-		<link rel="modulepreload" href="/PhysicsProject/_app/immutable/chunks/entry.Bh1beh-r.js">
-		<link rel="modulepreload" href="/PhysicsProject/_app/immutable/chunks/scheduler.BvLojk_z.js">
-		<link rel="modulepreload" href="/PhysicsProject/_app/immutable/entry/app.Dkn85tos.js">
-		<link rel="modulepreload" href="/PhysicsProject/_app/immutable/chunks/index.BknbpnMS.js">
-		<link rel="modulepreload" href="/PhysicsProject/_app/immutable/nodes/0.CizlH6vw.js">
-		<link rel="modulepreload" href="/PhysicsProject/_app/immutable/nodes/2.Dw9A21CN.js">
+		<link href="./_app/immutable/assets/2.rXUnl7Yg.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.DoXDlzIa.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/entry.CnjBsjCX.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.BvLojk_z.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.DDEjdewu.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/preload-helper.BQ24v_F8.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.BknbpnMS.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.CizlH6vw.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/2.DR5VAdKp.js">
 		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">  <main class="svelte-f2vm6j"><h1 data-svelte-h="svelte-1oqynl9">Вычисление напряжённости и потенциала поля</h1> <div class="input-group svelte-f2vm6j"><label for="length" data-svelte-h="svelte-1t4iwr2">Длина нити (L), м:</label> <input id="length" type="number" min="0.1" step="0.1" value="1"></div> <div class="input-group svelte-f2vm6j"><label for="density" data-svelte-h="svelte-ew2m6e">Линейная плотность заряда (λ), Кл/м:</label> <input id="density" type="number" min="0.1" step="0.1" value="1"></div> <div><h2 data-svelte-h="svelte-1mp97xh">Результаты</h2> <p>Напряженность поля (E): 0.00 мкН/Кл</p> <p>Потенциал поля (V): 0.00 мкВ</p></div> <main class="svelte-f2vm6j"><h1 data-svelte-h="svelte-1oqynl9">Вычисление напряжённости и потенциала поля</h1> <div class="input-group svelte-f2vm6j"><label for="length" data-svelte-h="svelte-1t4iwr2">Длина нити (L), м:</label> <input id="length" type="number" min="0.1" step="0.1" value="1"></div> <div class="input-group svelte-f2vm6j"><label for="density" data-svelte-h="svelte-ew2m6e">Линейная плотность заряда (λ), Кл/м:</label> <input id="density" type="number" min="0.1" step="0.1" value="1"></div> <div><h2 data-svelte-h="svelte-1mp97xh">Результаты</h2> <p>Напряженность поля (E): 0 Н/Кл</p> <p>Потенциал поля (V): 0 В</p></div> <div></div> </main> </main> 
+		<div style="display: contents">  <main class="svelte-f2vm6j"><h1 data-svelte-h="svelte-1oqynl9">Вычисление напряжённости и потенциала поля</h1> <div class="input-group svelte-f2vm6j"><label for="length" data-svelte-h="svelte-1t4iwr2">Длина нити (L), м:</label> <input id="length" type="number" min="0.1" step="0.1" value="1"></div> <div class="input-group svelte-f2vm6j"><label for="density" data-svelte-h="svelte-ew2m6e">Линейная плотность заряда (λ), Кл/м:</label> <input id="density" type="number" min="0.1" step="0.1" value="1"></div> <div data-svelte-h="svelte-1l92lcd"><h2>Результаты</h2> </div> <div style="height: 1000px;"></div> </main> 
 			
 			<script>
 				{
-					__sveltekit_1xvndo7 = {
-						base: "/PhysicsProject",
-						assets: "/PhysicsProject"
+					__sveltekit_1bjtct8 = {
+						base: new URL(".", location).pathname.slice(0, -1)
 					};
 
 					const element = document.currentScript.parentElement;
@@ -31,8 +31,8 @@
 					const data = [null,null];
 
 					Promise.all([
-						import("/PhysicsProject/_app/immutable/entry/start.DYJXliPh.js"),
-						import("/PhysicsProject/_app/immutable/entry/app.Dkn85tos.js")
+						import("./_app/immutable/entry/start.DoXDlzIa.js"),
+						import("./_app/immutable/entry/app.DDEjdewu.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 2],
