@@ -1,62 +1,65 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 
-# Константы
-lambda_charge = 1e-6  # Кулоны на метр
-L = 1.0  # Длина нити в метрах
-epsilon_0 = 8.854187817e-12  # Фарад на метр
+# Физическая константа
+k = 8.99e9  # N m^2/C^2
 
-# Функция для вычисления потенциала в точке (x, y, z)
-def potential(x, y, z, lambda_charge, L, epsilon_0):
-    def integrand(x_prime):
-        return lambda_charge / np.sqrt((x - x_prime)**2 + y**2 + z**2)
-    x_values = np.linspace(-L/2, L/2, 1000)
-    V = np.trapz(integrand(x_values), x_values) / (4 * np.pi * epsilon_0)
-    return V
+def calculate_field_and_potential(l, lambda_, xP, yP, zP=0):
+    x = np.linspace(-l, l, 1000)
+    
+    dEx = k * lambda_ * (x - xP) / ((x - xP)**2 + yP**2 + zP**2)**(3/2)
+    dEy = k * lambda_ * yP / ((x - xP)**2 + yP**2 + zP**2)**(3/2)
+    dEz = k * lambda_ * zP / ((x - xP)**2 + yP**2 + zP**2)**(3/2)
+    
+    Ex = np.trapz(dEx, x)
+    Ey = np.trapz(dEy, x)
+    Ez = np.trapz(dEz, x)
+    
+    E = np.sqrt(Ex**2 + Ey**2 + Ez**2)
+    
+    dphi = k * lambda_ / np.sqrt((x - xP)**2 + yP**2 + zP**2)
+    phi = np.trapz(dphi, x)
+    
+    return Ex, Ey, phi
 
-# Функция для вычисления электрического поля в точке (x, y, z)
-def electric_field(x, y, z, lambda_charge, L, epsilon_0):
-    def integrand(x_prime):
-        r_squared = (x - x_prime)**2 + y**2 + z**2
-        return (lambda_charge * (x - x_prime) / r_squared**(3/2),
-                lambda_charge * y / r_squared**(3/2),
-                lambda_charge * z / r_squared**(3/2))
-    x_values = np.linspace(-L/2, L/2, 1000)
-    Ex = np.trapz([integrand(x_prime)[0] for x_prime in x_values], x_values) / (4 * np.pi * epsilon_0)
-    Ey = np.trapz([integrand(x_prime)[1] for x_prime in x_values], x_values) / (4 * np.pi * epsilon_0)
-    Ez = np.trapz([integrand(x_prime)[2] for x_prime in x_values], x_values) / (4 * np.pi * epsilon_0)
-    return Ex, Ey, Ez
+# Входные данные
+l = 1.0  # Длина нити, м
+lambda_ = 1.0e-6  # Линейная плотность заряда, Кл/м
 
-# Сетка точек
-x = np.linspace(-2, 2, 20)
+# Координаты сетки для визуализации
+x = np.linspace(-2, 2, 20)  # уменьшена плотность точек для лучшей визуализации векторов
 y = np.linspace(-2, 2, 20)
-z = np.linspace(-2, 2, 20)
-X, Y, Z = np.meshgrid(x, y, z)
+X, Y = np.meshgrid(x, y)
+print(X)
+print(Y)
+# Вычисление напряжённости и потенциала в каждой точке сетки
+Ex_grid = np.zeros(X.shape)
+Ey_grid = np.zeros(X.shape)
+phi_grid = np.zeros(X.shape)
 
-# Вычисление потенциала
-V = np.vectorize(potential)(X, Y, Z, lambda_charge, L, epsilon_0)
+for i in range(X.shape[0]):
+    for j in range(X.shape[1]):
+        Ex, Ey, phi = calculate_field_and_potential(l, lambda_, X[i, j], Y[i, j])
+        Ex_grid[i, j] = Ex
+        Ey_grid[i, j] = Ey
+        phi_grid[i, j] = phi
 
-# Вычисление компонентов электрического поля
-Ex, Ey, Ez = np.vectorize(electric_field)(X, Y, Z, lambda_charge, L, epsilon_0)
+# Визуализация
 
-# Визуализация потенциала
-fig = plt.figure(figsize=(10, 8))
-ax = fig.add_subplot(111, projection='3d')
-ax.scatter(X, Y, Z, c=V, cmap='viridis')
-ax.set_title('Electric Potential due to a Uniformly Charged Rod')
-ax.set_xlabel('x (m)')
-ax.set_ylabel('y (m)')
-ax.set_zlabel('z (m)')
-plt.colorbar(ax.scatter(X, Y, Z, c=V, cmap='viridis'), label='Electric Potential (V)')
-plt.show()
+fig, ax = plt.subplots(figsize=(10, 8))
 
-# Визуализация напряженности поля
-fig = plt.figure(figsize=(10, 8))
-ax = fig.add_subplot(111, projection='3d')
-ax.quiver(X, Y, Z, Ex, Ey, Ez, length=0.1, normalize=True)
-ax.set_title('Electric Field due to a Uniformly Charged Rod')
-ax.set_xlabel('x (m)')
-ax.set_ylabel('y (m)')
-ax.set_zlabel('z (m)')
+# Контурный график потенциала
+contour = ax.contour(X, Y, phi_grid, levels=20, cmap='RdYlBu')
+plt.colorbar(contour, ax=ax, label='Potential (V)')
+
+# Векторное поле напряжённости
+ax.quiver(X, Y, Ex_grid, Ey_grid, color='k', scale=1e6, width=0.005, headwidth=3)
+
+# Нить
+ax.plot([-l, l], [0, 0], 'r-', lw=2, label='Charged Wire')
+
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_title('Electric Field and Potential of a Charged Wire')
+ax.legend()
 plt.show()
