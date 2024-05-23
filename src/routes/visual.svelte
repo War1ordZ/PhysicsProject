@@ -11,10 +11,8 @@
 
   const graph = async (l: number, λ: number) => {
     const x = linspace(-2 * l, 2 * l, 50);
-    console.log(x);
     const y = linspace(-2 * l, 2 * l, 50);
     const { X, Y } = meshgrid(x, y);
-    console.log(X, Y)
     const Ex_grid: number[][] = [];
     const Ey_grid: number[][] = [];
     const phi_grid: number[][] = [];
@@ -28,8 +26,9 @@
         Ex_grid[i].push(Ex);
         Ey_grid[i].push(Ey);
         phi_grid[i].push(phi);
-        // console.log(phi);
+
       }
+      // console.log(phi_grid);
     }
 
     const data = [
@@ -38,9 +37,9 @@
         x: x,
         y: y,
         type: 'contour',
-        colorscale: 'RdYlBu',
+        colorscale: 'RdBu',
         colorbar: {
-          title: 'Потенциал (V)'
+          title: 'Потенциал (В)'
         }
       },
       {
@@ -49,7 +48,7 @@
         x: linspace(-l, l, 1000),
         y: Array(1000).fill(0),
         line: {
-          color: 'blue',
+          color: 'black',
           width: 2
         },
         name: 'Заряженная нить'
@@ -61,7 +60,7 @@
         y: Y.flat(),
         marker: {
           size: 7,
-          color: '000000aa',
+          color: '000000cc  ',
           symbol: 'arrow-open',
           // angleref: 'previous',
           angle: flatten(Ex_grid).map(
@@ -77,9 +76,9 @@
     ];
 
     const layout = {
-      // title: 'Electric Field and Potential of a Charged Wire',
+      title: 'Визуализация предметной области',
       xaxis: { title: 'X', range: [-l * 1.5, l * 1.5] },
-      yaxis: { title: 'Y', range: [-l, l]} ,
+      yaxis: { title: 'Y', range: [-l * 0.75, l * 0.75]} ,
       showlegend: false
     };
     Plotly.newPlot(div, data, layout);
