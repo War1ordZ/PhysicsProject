@@ -1,7 +1,6 @@
 <script lang="ts">
   import Visual from './visual.svelte';
   import { calculateFieldAndPotential } from './physics';
-  import { cos } from 'three/examples/jsm/nodes/math/MathNode';
 
   let l = 1; // длина нити в метрах
   let λ = 1; // линейная плотность заряда в Кл/м
