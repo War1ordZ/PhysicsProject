@@ -25,19 +25,16 @@
 </script>
 
 <main>
-  <h1>Вычисление напряжённости и потенциала поля</h1>
-  <div class="input-group">
-    <label for="length">Длина нити (L), м:</label>
-    <input id="length" type="number" bind:value={l} min="0.1" step="0.1" />
-  </div>
-  <div class="input-group">
-    <label for="density">Линейная плотность заряда (λ), Кл/м:</label>
-    <input id="density" type="number" bind:value={λ} min="0.1" step="0.1" />
-  </div>
-  <div>
-    <h2>Результаты</h2>
-    <!-- <p>Напряженность поля (E): {formatValue(E, 'Н/Кл')}</p>
-    <p>Потенциал поля (V): {formatValue(V, 'В')}</p> -->
+  <div class="controls">
+    <h1>Вычисление напряжённости и потенциала поля</h1>
+    <div class="input-group">
+      <label for="length">Длина нити (L), м:</label>
+      <input id="length" type="number" bind:value={l} min="0.1" step="0.1" />
+    </div>
+    <div class="input-group">
+      <label for="density">Линейная плотность заряда (λ), Кл/м:</label>
+      <input id="density" type="number" bind:value={λ} min="0.1" step="0.1" />
+    </div>
   </div>
   <Visual {l} {λ} />
 </main>
@@ -46,6 +43,31 @@
   main {
     text-align: center;
   }
+
+  h1 {
+      margin-bottom: 30px;
+  }
+
+  .controls {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 700px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      background: white;
+      padding: 40px;
+      transition: 1s ease-out;
+  }
+
+  .controls:not(:hover) {
+      opacity: 0;
+  }
+
+
 
   .input-group {
     margin-bottom: 1em;

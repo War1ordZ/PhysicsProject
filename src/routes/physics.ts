@@ -3,7 +3,7 @@
 export const k = 8.99e9;  // N m^2/C^2
 
 export function calculateFieldAndPotential(l: number, lambda: number, xP: number, yP: number, zP: number = 0): [number, number, number] {
-    const x = linspace(-l, l, 1000);
+    const x = linspace(-l, l, 100);
     
     const dEx = x.map(xi => k * lambda * (xi - xP) / ((xi - xP)**2 + yP**2 + zP**2)**(3/2));
     const dEy = x.map(xi => k * lambda * yP / ((xi - xP)**2 + yP**2 + zP**2)**(3/2));

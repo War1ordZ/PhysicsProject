@@ -10,9 +10,11 @@
   let div: HTMLDivElement;
 
   const graph = async (l: number, λ: number) => {
-    const x = linspace(-2 * l, 2 * l, 20);
-    const y = linspace(-2 * l, 2 * l, 20);
+    const x = linspace(-2 * l, 2 * l, 50);
+    console.log(x);
+    const y = linspace(-2 * l, 2 * l, 50);
     const { X, Y } = meshgrid(x, y);
+    console.log(X, Y)
     const Ex_grid: number[][] = [];
     const Ey_grid: number[][] = [];
     const phi_grid: number[][] = [];
@@ -38,7 +40,7 @@
         type: 'contour',
         colorscale: 'RdYlBu',
         colorbar: {
-          title: 'Potential (V)'
+          title: 'Потенциал (V)'
         }
       },
       {
@@ -50,7 +52,7 @@
           color: 'blue',
           width: 2
         },
-        name: 'Charged Wire'
+        name: 'Заряженная нить'
       },
       {
         type: 'scatter',
@@ -58,27 +60,27 @@
         x: X.flat(),
         y: Y.flat(),
         marker: {
-          size: 20,
-          color: 'black',
-          symbol: 'arrow',
-          angleref: 'previous',
+          size: 7,
+          color: '000000aa',
+          symbol: 'arrow-open',
+          // angleref: 'previous',
           angle: flatten(Ex_grid).map(
-            (Ex, idx) => (Math.atan2(flatten(Ey_grid)[idx], Ex) * 180) / Math.PI
+            (Ex, idx) => (Math.atan2(flatten(Ey_grid)[idx], Ex) * 180 + 270) / Math.PI
           ),
           sizemode: 'scaled',
-          // sizeref: 2.5,
-          // sizemin: 0.5,
-          // sizemax: 10
+          sizeref: 2.5,
+          sizemin: 0.5,
+          sizemax: 10
         },
-        name: 'Field Vectors'
+        name: 'Векторы поля'
       }
     ];
 
     const layout = {
-      title: 'Electric Field and Potential of a Charged Wire',
-      xaxis: { title: 'X' },
-      yaxis: { title: 'Y' },
-      showlegend: true
+      // title: 'Electric Field and Potential of a Charged Wire',
+      xaxis: { title: 'X', range: [-l * 1.5, l * 1.5] },
+      yaxis: { title: 'Y', range: [-l, l]} ,
+      showlegend: false
     };
     Plotly.newPlot(div, data, layout);
   };
@@ -95,7 +97,7 @@
       Y.push(x.slice());
     }
     for (let j = 0; j < x.length; j++) {
-      X.push(Array.from({ length: y.length }, (val, i) => y[j]));
+      X.push(Array.from({ length: y.length }, () => y[j]));
     }
     return { X: Y, Y: X };
   }
@@ -111,4 +113,14 @@
   $: if (div && Plotly) graph(l, λ);
 </script>
 
-<div bind:this={div} style="height: 1000px;"></div>
+<div bind:this={div} class="graph"></div>
+
+<style>
+  .graph {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+  }
+</style>
