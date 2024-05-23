@@ -1,28 +1,38 @@
 <!doctype html>
 <html lang="en">
 	<head>
+		<title>Вычисление напряжённости и потенциала поля</title>
 		<meta charset="utf-8" />
-		<link rel="icon" href="./favicon.png" />
+		<link rel="icon" href="./atom.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
-		<link href="./_app/immutable/assets/2.rXUnl7Yg.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/entry/start.DoXDlzIa.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/entry.CnjBsjCX.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.BvLojk_z.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.DDEjdewu.js">
+		<link href="./_app/immutable/assets/2.e0f7KTcY.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.C_BPeDGP.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/entry.BzN3y3OC.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.CKeagB7m.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.BK8CLjk5.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/preload-helper.BQ24v_F8.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.BknbpnMS.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/0.CizlH6vw.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/2.DR5VAdKp.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.XykxdH18.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.6EkC4gCf.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/2.DvNg9Zip.js">
 		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				font-family: 'Montserrat', sans-serif;
+			}
+		</style>
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">  <main class="svelte-f2vm6j"><h1 data-svelte-h="svelte-1oqynl9">Вычисление напряжённости и потенциала поля</h1> <div class="input-group svelte-f2vm6j"><label for="length" data-svelte-h="svelte-1t4iwr2">Длина нити (L), м:</label> <input id="length" type="number" min="0.1" step="0.1" value="1"></div> <div class="input-group svelte-f2vm6j"><label for="density" data-svelte-h="svelte-ew2m6e">Линейная плотность заряда (λ), Кл/м:</label> <input id="density" type="number" min="0.1" step="0.1" value="1"></div> <div data-svelte-h="svelte-1l92lcd"><h2>Результаты</h2> </div> <div style="height: 1000px;"></div> </main> 
+		<div style="display: contents">  <main class="svelte-d8v5tx"><div class="controls-container svelte-d8v5tx"><div class="controls active svelte-d8v5tx"><h1 class="svelte-d8v5tx" data-svelte-h="svelte-1oqynl9">Вычисление напряжённости и потенциала поля</h1> <h3 class="svelte-d8v5tx" data-svelte-h="svelte-y4uk5v">Параметры симуляции</h3> <div class="input-group svelte-d8v5tx"><label for="length" data-svelte-h="svelte-n3vgeh">Длина нити (L), <strong>м</strong>:</label> <input id="length" type="number" min="0.1" step="0.1" value="1"></div> <div class="input-group svelte-d8v5tx"><label for="density" data-svelte-h="svelte-oadt9p">Линейная плотность заряда (λ), <strong>Кл/м</strong>:</label> <input id="density" type="number" min="0.1" step="0.1" value="1"></div> <h3 class="svelte-d8v5tx" data-svelte-h="svelte-i6nor4">Расчёт напряжённости и потенциала в точке</h3> <div class="input-group svelte-d8v5tx"><label for="x-coordinate" data-svelte-h="svelte-i8sxx7">Координата X, <strong>м</strong>:</label> <input id="x-coordinate" type="number" step="0.1" value="0"></div> <div class="input-group svelte-d8v5tx"><label for="x-coordinate" data-svelte-h="svelte-1o86rug">Координата Y, <strong>м</strong>:</label> <input id="x-coordinate" type="number" step="0.1" value="1"></div> <div class="input-group svelte-d8v5tx"><label for="potential" data-svelte-h="svelte-xg5y17">Потенциал поля:</label> <input id="x-coordinate" type="text" value="0.00 мкВ" disabled></div> <div class="input-group svelte-d8v5tx"><label for="potential" data-svelte-h="svelte-14rsxac">Модуль вектора напряжённости:</label> <input id="x-coordinate" type="text" value="0.00 мкН/Кл" disabled></div> <h3 class="svelte-d8v5tx" data-svelte-h="svelte-129pg4g">Формулы для расчёта</h3> <img src="https://latex.codecogs.com/svg.image?\varphi=\int_{-1}^{1}\frac{\lambda dx}{4\pi\epsilon_0\sqrt{(x-(0))^2+(1)^2}}=0\text{ V}" alt="varphi"> <br> <img src="https://latex.codecogs.com/svg.image?\overline{E}_x=\int_{-1}^{1}\frac{k\lambda((0)-x)}{(((0)-x^2)-(1)^2)^{\frac{3}{2}}}dx=0\text{ N/C}" alt="varphi"> <br> <img src="https://latex.codecogs.com/svg.image?\overline{E}_y=\int_{-1}^{1}\frac{k\lambda(1)}{(((0)-x^2)-(1)^2)^{\frac{3}{2}}}dx=0\text{ N/C}" alt="varphi"> <img class="cross svelte-d8v5tx" src="cross.svg" alt="cross"></div></div> <img class="settings svelte-d8v5tx" src="settings.svg" alt="setting"> <div class="graph svelte-h0f08j"></div> </main> 
 			
 			<script>
 				{
-					__sveltekit_1bjtct8 = {
+					__sveltekit_ijkray = {
 						base: new URL(".", location).pathname.slice(0, -1)
 					};
 
@@ -31,8 +41,8 @@
 					const data = [null,null];
 
 					Promise.all([
-						import("./_app/immutable/entry/start.DoXDlzIa.js"),
-						import("./_app/immutable/entry/app.DDEjdewu.js")
+						import("./_app/immutable/entry/start.C_BPeDGP.js"),
+						import("./_app/immutable/entry/app.BK8CLjk5.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 2],
